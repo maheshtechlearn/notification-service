@@ -20,17 +20,23 @@ public class NotificationService {
 
     /**
      * Processes the notification by sending an SMS or Email based on the type specified.
+     *
      * @param notification The notification object containing recipient, message, and type.
      */
     public void sendNotification(Notification notification) throws Exception {
         logger.info("Processing notification for recipient: {}", notification.getRecipient());
 
-        if ("EMAIL".equalsIgnoreCase(notification.getType())) {
-            emailService.sendEmail(notification.getRecipient(), notification.getMessage());
-        } else if ("SMS".equalsIgnoreCase(notification.getType())) {
-            smsService.sendSms(notification.getRecipient(), notification.getMessage());
-        } else {
-            logger.warn("Invalid notification type: {}. Supported types are EMAIL and SMS.", notification.getType());
+        switch (notification.getType().toUpperCase()) {
+            case "EMAIL":
+                emailService.sendEmail(notification.getRecipient(), notification.getMessage());
+                break;
+            case "SMS":
+                smsService.sendSms(notification.getRecipient(), notification.getMessage());
+                break;
+            default:
+                logger.warn("Invalid notification type: {}. Supported types are EMAIL and SMS.", notification.getType());
+                break;
         }
+
     }
 }
