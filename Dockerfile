@@ -6,8 +6,8 @@ EXPOSE 8080
 
 
 # Copy the JAR file into the container
-ADD target/notificationservice-0.0.1-SNAPSHOT.jar notificationservice-0.0.1-SNAPSHOT.jar
+ADD target/notification-service-0.0.1-SNAPSHOT.jar notification-service-0.0.1-SNAPSHOT.jar
 
 
 # Command to run the application
-ENTRYPOINT ["java", "-jar", "notificationservice-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "notification-service-0.0.1-SNAPSHOT.jar"]
